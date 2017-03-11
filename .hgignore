@@ -1,0 +1,8 @@
+
+syntax: glob
+bin
+.settings
+.classpath
+build/libs
+build/output
+
