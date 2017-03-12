@@ -26,6 +26,16 @@ public class Build extends JkJavaBuild {
 	@JkProject("../JFXGL")
 	cuchaz.jfxgl.Build jfxgl;
 	
+	private JkBuildPluginEclipse eclipse;
+	
+	public Build() {
+		// tell the eclipse plugin to use the special JDK without JavaFX
+		// NOTE: you should create a JRE in the  eclipse workspace needs to have a JRE with this name!
+		eclipse = new JkBuildPluginEclipse();
+		eclipse.setStandardJREContainer("openjdk-8u121-noFX");
+		plugins.configure(eclipse);
+	}
+	
 	@Override
 	public JkModuleId moduleId() {
 		return JkModuleId.of("cuchaz", "jfxgl-demos");
@@ -40,35 +50,30 @@ public class Build extends JkJavaBuild {
 	public String javaSourceVersion() {
 		return JkJavaCompiler.V8;
 	}
-	
+
 	@Override
 	public JkDependencies dependencies() {
-		
-		// tell the eclipse plugin to use the special JDK without JavaFX
-		// NOTE: you should create a JRE in the  eclipse workspace needs to have a JRE with this name!
-		String jdkName = "openjdk-8u121-noFX";
-		JkBuildPluginEclipse eclipsePlugin = pluginOf(JkBuildPluginEclipse.class);
-		if (eclipsePlugin != null) {
-			eclipsePlugin.jreContainer = "org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/" + jdkName;
-		}
-		
 		return JkDependencies.builder()
 			
 			.on(jfxgl.asJavaDependency())
 			
 			// OpenJFX modules (already compiled)
-			// NOTE: ideally these would be referenced projects in Eclipse (better IDE integration that way),
-			// but jerkar wants to always compile sub-projects and I don't know how to tell it no
-			// fix incoming, see github issue: https://github.com/jerkar/jerkar/issues/61
-			.on(new File("../openjfx/modules/base/bin")).scope(PROVIDED)
-			.on(new File("../openjfx/modules/graphics/bin")).scope(PROVIDED)
-			.on(new File("../openjfx/modules/controls/bin")).scope(PROVIDED)
-			.on(new File("../openjfx/modules/fxml/bin")).scope(PROVIDED)
+			.on(projectClasses("../openjfx/modules/controls")).scope(PROVIDED)
+			.on(projectClasses("../openjfx/modules/fxml")).scope(PROVIDED)
+			.on(projectClasses("../openjfx/modules/graphics")).scope(PROVIDED)
+			.on(projectClasses("../openjfx/modules/base")).scope(PROVIDED)
 			
 			.on("org.joml:joml:1.9.2")
-			.on(cuchaz.jfxgl.Build.lwjgl(this, "3.1.1", "glfw", "jemalloc", "opengl"))
+			.on(cuchaz.jfxgl.Build.lwjgl("3.1.1", "glfw", "jemalloc", "opengl"))
 			
 			.build();
+	}
+	
+	private File projectClasses(String path) {
+		File projectDir = new File(path);
+		File classesDir = new File(projectDir, "bin");
+		eclipse.addProjectFromClasses(classesDir, projectDir);
+		return classesDir;
 	}
 	
 	@Override
