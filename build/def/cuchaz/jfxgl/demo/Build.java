@@ -26,12 +26,10 @@ public class Build extends JkJavaBuild {
 	@JkProject("../JFXGL")
 	cuchaz.jfxgl.Build jfxgl;
 	
-	private JkBuildPluginEclipse eclipse;
-	
 	public Build() {
 		// tell the eclipse plugin to use the special JDK without JavaFX
 		// NOTE: you should create a JRE in the  eclipse workspace needs to have a JRE with this name!
-		eclipse = new JkBuildPluginEclipse();
+		JkBuildPluginEclipse eclipse = new JkBuildPluginEclipse();
 		eclipse.setStandardJREContainer("openjdk-8u121-noFX");
 		plugins.configure(eclipse);
 	}
@@ -58,22 +56,15 @@ public class Build extends JkJavaBuild {
 			.on(jfxgl.asJavaDependency())
 			
 			// OpenJFX modules (already compiled)
-			.on(projectClasses("../openjfx/modules/controls")).scope(PROVIDED)
-			.on(projectClasses("../openjfx/modules/fxml")).scope(PROVIDED)
-			.on(projectClasses("../openjfx/modules/graphics")).scope(PROVIDED)
-			.on(projectClasses("../openjfx/modules/base")).scope(PROVIDED)
+			.on(new File("../openjfx/modules/controls/bin")).scope(PROVIDED)
+			.on(new File("../openjfx/modules/fxml/bin")).scope(PROVIDED)
+			.on(new File("../openjfx/modules/graphics/bin")).scope(PROVIDED)
+			.on(new File("../openjfx/modules/base/bin")).scope(PROVIDED)
 			
 			.on("org.joml:joml:1.9.2")
 			.on(cuchaz.jfxgl.Build.lwjgl("3.1.1", "glfw", "jemalloc", "opengl"))
 			
 			.build();
-	}
-	
-	private File projectClasses(String path) {
-		File projectDir = new File(path);
-		File classesDir = new File(projectDir, "bin");
-		eclipse.addProjectFromClasses(classesDir, projectDir);
-		return classesDir;
 	}
 	
 	@Override
