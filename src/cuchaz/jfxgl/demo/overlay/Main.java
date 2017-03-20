@@ -12,6 +12,7 @@ package cuchaz.jfxgl.demo.overlay;
 import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWWindowSizeCallbackI;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.Callback;
@@ -21,6 +22,7 @@ import cuchaz.jfxgl.JFXGL;
 import cuchaz.jfxgl.demo.FrameTimer;
 import cuchaz.jfxgl.demo.LWJGLDebug;
 import cuchaz.jfxgl.demo.TriangleRenderer;
+import cuchaz.jfxgl.prism.JFXGLContext;
 
 public class Main {
 	
@@ -47,6 +49,12 @@ public class Main {
 		// disable frame limiters (like vsync)
 		GLFW.glfwSwapInterval(0);
 		
+		// update the GL viewport when the window changes
+		GLFWWindowSizeCallbackI windowSizeCallback = (long hwndAgain, int width, int height) -> {
+			GL11.glViewport(0, 0, width, height);
+		};
+		GLFW.glfwSetWindowSizeCallback(hwnd, windowSizeCallback);
+		
 		GL11.glClearColor(0f, 0f, 0f, 1.0f);
 		
 		FrameTimer timer = new FrameTimer();
@@ -54,10 +62,10 @@ public class Main {
 			
 			// start the app
 			DemoApp app = new DemoApp();
-			JFXGL.start(hwnd, args, app);
+			JFXGLContext context = JFXGL.start(hwnd, args, app);
 			
 			// init triangle rendering
-			TriangleRenderer triangle = new TriangleRenderer();
+			TriangleRenderer triangle = new TriangleRenderer(context);
 			
 			// render loop
 			while (!GLFW.glfwWindowShouldClose(hwnd)) {

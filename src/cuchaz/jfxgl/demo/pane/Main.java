@@ -13,7 +13,6 @@ import org.lwjgl.glfw.Callbacks;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.Callback;
 import org.lwjgl.system.MemoryUtil;
 
@@ -45,27 +44,14 @@ public class Main {
 		// disable frame limiters (like vsync)
 		GLFW.glfwSwapInterval(0);
 		
-		GL11.glClearColor(0f, 0f, 0f, 1.0f);
-		
 		try {
 			
 			// start the app
 			DemoApp app = new DemoApp();
 			JFXGL.start(hwnd, args, app);
-			app.initRender();
 			
 			// render loop
-			while (!GLFW.glfwWindowShouldClose(hwnd)) {
-				
-				// clear the framebuf
-				GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-				
-				// do JavaFX stuff
-				JFXGL.render();
-				
-				GLFW.glfwSwapBuffers(hwnd);
-				GLFW.glfwPollEvents();
-			}
+			JFXGL.renderLoop();
 			
 		} finally {
 			

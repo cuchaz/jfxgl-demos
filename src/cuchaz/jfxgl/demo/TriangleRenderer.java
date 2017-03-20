@@ -111,9 +111,9 @@ public class TriangleRenderer {
 	private final int vboId;
 	private final int iboId;
 	
-	public TriangleRenderer() {
+	public TriangleRenderer(JFXGLContext context) {
 		
-		this.context = JFXGLContext.get();
+		this.context = context;
 		
 		// init the shader
 		shader = new Shader();
@@ -168,7 +168,6 @@ public class TriangleRenderer {
 		
 		// unbind things
 		GL30.glBindVertexArray(0);
-		GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
 	}
 	
 	public void cleanup() {

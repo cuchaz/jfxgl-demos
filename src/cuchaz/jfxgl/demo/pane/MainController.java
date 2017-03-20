@@ -13,10 +13,12 @@ import org.lwjgl.opengl.GL11;
 
 import cuchaz.jfxgl.CalledByEventsThread;
 import cuchaz.jfxgl.CalledByMainThread;
+import cuchaz.jfxgl.InPaneGLContext;
 import cuchaz.jfxgl.JFXGL;
 import cuchaz.jfxgl.controls.OpenGLPane;
 import cuchaz.jfxgl.demo.FrameTimer;
 import cuchaz.jfxgl.demo.TriangleRenderer;
+import cuchaz.jfxgl.prism.JFXGLContext;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -56,20 +58,33 @@ public class MainController {
 		spinCheck.selectedProperty().set(isSpinning);
 		
 		// set our renderer
-		openglPane.setRenderer(() -> render());
+		openglPane.setInitializer((context) -> initRender(context));
+		openglPane.setResizer((context, width, height) -> paneResize(context, width, height));
+		openglPane.setRenderer((context) -> render(context));
 		
 		// start the timer
 		timer = new FrameTimer();
 		startTimeMs = System.nanoTime()/1000/1000;
 	}
 	
+	@InPaneGLContext
 	@CalledByMainThread
-	public void initRender() {
-		triangle = new TriangleRenderer();
+	public void initRender(JFXGLContext context) {
+		
+		triangle = new TriangleRenderer(context);
+		
+		GL11.glClearColor(0f, 0f, 0f, 1f);
 	}
 	
+	@InPaneGLContext
 	@CalledByMainThread
-	public void render() {
+	public void paneResize(JFXGLContext context, int width, int height) {
+		GL11.glViewport(0, 0, width, height);
+	}
+	
+	@InPaneGLContext
+	@CalledByMainThread
+	public void render(JFXGLContext context) {
 		
 		long nowMs = System.nanoTime()/1000/1000;
 		
@@ -100,7 +115,6 @@ public class MainController {
 		}
 		
 		// render the triangle!
-		GL11.glClearColor(0, 0, 0, 1);
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		triangle.render(rotationRadians);
 		

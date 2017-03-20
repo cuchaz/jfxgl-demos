@@ -43,9 +43,4 @@ public class DemoApp extends Application {
 		
 		controller = loader.getController();
 	}
-	
-	@CalledByMainThread
-	public void initRender() {
-		controller.initRender();
-	}
 }
