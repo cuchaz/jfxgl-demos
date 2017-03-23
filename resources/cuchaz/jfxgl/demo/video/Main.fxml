@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgb(0, 0, 0, 0);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cuchaz.jfxgl.demo.video.MainController">
+   <children>
+      <CheckBox fx:id="playCheck" layoutX="21.0" layoutY="350.0" mnemonicParsing="false" text="play" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="21.0" />
+      <Slider fx:id="timeSlider" blockIncrement="30.0" layoutX="91.0" layoutY="348.0" majorTickUnit="5.0" max="16.0" maxWidth="1.7976931348623157E308" minorTickCount="1" prefHeight="38.0" prefWidth="489.0" showTickLabels="true" showTickMarks="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="20.0" />
+   </children>
+</AnchorPane>

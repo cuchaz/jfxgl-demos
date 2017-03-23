@@ -48,7 +48,7 @@ public class Build extends JkJavaBuild {
 	public String javaSourceVersion() {
 		return JkJavaCompiler.V8;
 	}
-
+	
 	@Override
 	public JkDependencies dependencies() {
 		return JkDependencies.builder()
@@ -63,6 +63,7 @@ public class Build extends JkJavaBuild {
 			
 			.on("org.joml:joml:1.9.2")
 			.on(cuchaz.jfxgl.Build.lwjgl("3.1.1", "glfw", "jemalloc", "opengl"))
+			.on("io.humble:humble-video-all:0.2.1")
 			
 			.build();
 	}
