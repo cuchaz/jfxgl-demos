@@ -11,6 +11,8 @@ package cuchaz.jfxgl.demo.pane;
 
 import org.lwjgl.opengl.GL11;
 
+import com.sun.prism.es2.JFXGLContext;
+
 import cuchaz.jfxgl.CalledByEventsThread;
 import cuchaz.jfxgl.CalledByMainThread;
 import cuchaz.jfxgl.InPaneGLContext;
@@ -18,7 +20,6 @@ import cuchaz.jfxgl.JFXGL;
 import cuchaz.jfxgl.controls.OpenGLPane;
 import cuchaz.jfxgl.demo.FrameTimer;
 import cuchaz.jfxgl.demo.TriangleRenderer;
-import cuchaz.jfxgl.prism.JFXGLContext;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;

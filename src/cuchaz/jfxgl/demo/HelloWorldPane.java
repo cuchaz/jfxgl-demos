@@ -17,11 +17,13 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.MemoryUtil;
 
+import com.sun.prism.es2.JFXGLContext;
+
 import cuchaz.jfxgl.CalledByEventsThread;
 import cuchaz.jfxgl.CalledByMainThread;
 import cuchaz.jfxgl.JFXGL;
+import cuchaz.jfxgl.JFXGLLauncher;
 import cuchaz.jfxgl.controls.OpenGLPane;
-import cuchaz.jfxgl.prism.JFXGLContext;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -29,7 +31,11 @@ import javafx.stage.Stage;
 
 public class HelloWorldPane {
 	
-	public static void main(String[] args)
+	public static void main(String[] args) {
+		JFXGLLauncher.launchMain(HelloWorld.class, args);
+	}
+	
+	public static void jfxglmain(String[] args)
 	throws Exception {
 		
 		// create a window using GLFW

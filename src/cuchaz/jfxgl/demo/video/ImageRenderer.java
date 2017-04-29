@@ -21,10 +21,11 @@ import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import com.sun.prism.es2.JFXGLContext;
+import com.sun.prism.es2.TexturedQuad;
+
 import cuchaz.jfxgl.CalledByMainThread;
 import cuchaz.jfxgl.InAppGLContext;
-import cuchaz.jfxgl.prism.JFXGLContext;
-import cuchaz.jfxgl.prism.TexturedQuad;
 
 public class ImageRenderer {
 	

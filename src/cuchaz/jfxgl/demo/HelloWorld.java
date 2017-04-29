@@ -18,6 +18,7 @@ import org.lwjgl.system.MemoryUtil;
 
 import cuchaz.jfxgl.CalledByEventsThread;
 import cuchaz.jfxgl.JFXGL;
+import cuchaz.jfxgl.JFXGLLauncher;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -26,7 +27,11 @@ import javafx.stage.Stage;
 
 public class HelloWorld {
 	
-	public static void main(String[] args)
+	public static void main(String[] args) {
+		JFXGLLauncher.launchMain(HelloWorld.class, args);
+	}
+	
+	public static void jfxglmain(String[] args)
 	throws Exception {
 		
 		// create a window using GLFW

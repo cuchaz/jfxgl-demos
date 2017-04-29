@@ -18,13 +18,19 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.system.Callback;
 import org.lwjgl.system.MemoryUtil;
 
+import com.sun.prism.es2.JFXGLContext;
+
 import cuchaz.jfxgl.JFXGL;
+import cuchaz.jfxgl.JFXGLLauncher;
 import cuchaz.jfxgl.demo.LWJGLDebug;
-import cuchaz.jfxgl.prism.JFXGLContext;
 
 public class Main {
 	
-	public static void main(String[] args)
+	public static void main(String[] args) {
+		JFXGLLauncher.launchMain(Main.class, args);
+	}
+	
+	public static void jfxglmain(String[] args)
 	throws Exception {
 		
 		// init GLFW

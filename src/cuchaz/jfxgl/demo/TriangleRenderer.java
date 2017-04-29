@@ -19,7 +19,7 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.system.MemoryStack;
 
-import cuchaz.jfxgl.prism.JFXGLContext;
+import com.sun.prism.es2.JFXGLContext;
 
 public class TriangleRenderer {
 	
@@ -148,7 +148,7 @@ public class TriangleRenderer {
 			GL20.glEnableVertexAttribArray(1);
 			GL20.glVertexAttribPointer(1, 3, GL11.GL_FLOAT, false, Float.BYTES*(3+3), Float.BYTES*3);
 		}
-	
+		
 		// unbind things
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 		GL30.glBindVertexArray(0);
