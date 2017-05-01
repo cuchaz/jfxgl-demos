@@ -7,7 +7,7 @@
  * 
  * See LICENSE.txt in the project root folder for the full license.
  *************************************************************************/
-#version 150 core
+#version 130
 
 uniform mat4 model;
 uniform mat4 view;
