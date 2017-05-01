@@ -30,7 +30,7 @@ public class Build extends JkJavaBuild {
 		// tell the eclipse plugin to use the special JDK without JavaFX
 		// NOTE: you should create a JRE in the  eclipse workspace needs to have a JRE with this name!
 		JkBuildPluginEclipse eclipse = new JkBuildPluginEclipse();
-		eclipse.setStandardJREContainer("openjdk-8u131-noFX");
+		eclipse.setStandardJREContainer("openjdk-noFX");
 		plugins.configure(eclipse);
 	}
 	
