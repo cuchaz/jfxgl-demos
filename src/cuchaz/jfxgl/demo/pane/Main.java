@@ -18,7 +18,7 @@ import org.lwjgl.system.MemoryUtil;
 
 import cuchaz.jfxgl.JFXGL;
 import cuchaz.jfxgl.JFXGLLauncher;
-import cuchaz.jfxgl.demo.LWJGLDebug;
+import cuchaz.jfxgl.LWJGLDebug;
 
 public class Main {
 	
@@ -34,6 +34,12 @@ public class Main {
 		if (!GLFW.glfwInit()) {
 			throw new Error("Can't initialize GLFW");
 		}
+		
+		// make a core OpenGL profile
+		GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MAJOR, 3);
+		GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MINOR, 2);
+		GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_FORWARD_COMPAT, GLFW.GLFW_TRUE);
+		GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_PROFILE, GLFW.GLFW_OPENGL_CORE_PROFILE);
 		
 		// create the window
 		long hwnd = GLFW.glfwCreateWindow(600, 338, "JFXGL Demo - OpenGLPane", MemoryUtil.NULL, MemoryUtil.NULL);

@@ -22,7 +22,7 @@ import com.sun.prism.es2.JFXGLContext;
 
 import cuchaz.jfxgl.JFXGL;
 import cuchaz.jfxgl.JFXGLLauncher;
-import cuchaz.jfxgl.demo.LWJGLDebug;
+import cuchaz.jfxgl.LWJGLDebug;
 
 public class Main {
 	

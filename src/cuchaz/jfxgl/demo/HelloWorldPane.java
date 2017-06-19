@@ -38,8 +38,12 @@ public class HelloWorldPane {
 	public static void jfxglmain(String[] args)
 	throws Exception {
 		
-		// create a window using GLFW
+		// create a window using GLFW (in a core OpenGL profile)
 		GLFW.glfwInit();
+		GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MAJOR, 3);
+		GLFW.glfwWindowHint(GLFW.GLFW_CONTEXT_VERSION_MINOR, 2);
+		GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_FORWARD_COMPAT, GLFW.GLFW_TRUE);
+		GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_PROFILE, GLFW.GLFW_OPENGL_CORE_PROFILE);
 		long hwnd = GLFW.glfwCreateWindow(300, 169, "JFXGL", MemoryUtil.NULL, MemoryUtil.NULL);
 		
 		// init OpenGL
