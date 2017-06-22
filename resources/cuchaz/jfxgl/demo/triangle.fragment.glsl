@@ -7,7 +7,7 @@
  * 
  * See LICENSE.txt in the project root folder for the full license.
  *************************************************************************/
-#version 130
+#version 150
 
 in vec3 passColor;
 
