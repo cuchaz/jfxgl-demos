@@ -10,6 +10,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -33,7 +36,12 @@ public class MainController {
 		dialogButton.setOnAction((e) -> {
 			Dialog<?> dialog = new Dialog<>();
 			dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
-			dialog.setContentText("Hello World!");
+			VBox vbox = new VBox();
+			vbox.getChildren().setAll(
+				new Label("What is best in life?"),
+				new TextField()
+			);
+			dialog.graphicProperty().set(vbox);
 			dialog.show();
 		});
 		
