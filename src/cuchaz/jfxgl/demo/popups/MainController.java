@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -25,6 +26,7 @@ public class MainController {
 	@FXML private Button pickFilesButton;
 	@FXML private Button saveFileButton;
 	@FXML private Button pickDirButton;
+	@FXML private ComboBox<String> combo;
 	
 	@FXML
 	@CalledByEventsThread
@@ -38,11 +40,14 @@ public class MainController {
 			dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
 			ChoiceBox<String> choices = new ChoiceBox<>();
 			choices.getItems().setAll("Cow", "Pig", "Horse");
+			ComboBox<String> combos = new ComboBox<>();
+			combos.getItems().setAll("Tweet", "Toot", "Bark", "Meow");
 			VBox vbox = new VBox();
 			vbox.getChildren().setAll(
 				new Label("What is best in life?"),
 				new TextField(),
-				choices
+				choices,
+				combos
 			);
 			dialog.graphicProperty().set(vbox);
 			dialog.show();
@@ -75,5 +80,8 @@ public class MainController {
 			File dir = new DirectoryChooser().showDialog(null);
 			System.out.println("picked folder: " + dir);
 		});
+		
+		combo.getItems().setAll("Deep-dish", "Thin-crust", "Neopolitan");
+		combo.getSelectionModel().select(0);
 	}
 }
