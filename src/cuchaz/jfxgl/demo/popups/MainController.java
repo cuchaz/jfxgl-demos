@@ -36,10 +36,13 @@ public class MainController {
 		dialogButton.setOnAction((e) -> {
 			Dialog<?> dialog = new Dialog<>();
 			dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+			ChoiceBox<String> choices = new ChoiceBox<>();
+			choices.getItems().setAll("Cow", "Pig", "Horse");
 			VBox vbox = new VBox();
 			vbox.getChildren().setAll(
 				new Label("What is best in life?"),
-				new TextField()
+				new TextField(),
+				choices
 			);
 			dialog.graphicProperty().set(vbox);
 			dialog.show();
