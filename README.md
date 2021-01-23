@@ -3,4 +3,4 @@
 
 This project contains demonstrations for [JFXGL][jfxgl].
 
-[jfxgl]: https://bitbucket.org/cuchaz/jfxgl
+[jfxgl]: https://github.com/cuchaz/jfxgl
